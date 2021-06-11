@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f54748;
+}
+
+.container-1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+#grid-container {
+  height: 70vh;
+  width: 70vh;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  border: 5px solid #f4eee8;
+  border-radius: 1%;
+  margin: auto;
+}
+
+.inner-box {
+  background-color: #ffff;
+  border: 1px solid #000000;
+}
+
+.black {
+  background-color: black;
+}
