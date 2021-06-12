@@ -10,10 +10,30 @@
     <title>Etch-a-sketch</title>
   </head>
   <body>
-    <h1 class="heading">Etch A Sketch</h1>
+    <div class="heading">
+      <h1>Etch A Sketch</h1>
+    </div>
+
+    <div class="buttonz">
+      <button class="clear-btn" type="button">Clear</button>
+      <button class="black-btn" type="button">Black</button>
+      <button class="rainbow-btn" type="button">Rainbow</button>
+      <button class="eraser-btn" type="button">Eraser</button>
+    </div>
+
+    <div class="grid-resizer">
+      <input
+        type="range"
+        min="2"
+        max="100"
+        value="16"
+        id="resizeGrid"
+        class="slider"
+      />
+      <p>Select grid size: <span id="value"></span></p>
+    </div>
 
     <div id="grid-container"></div>
-    <
 
     <script src="script.js"></script>
   </body>

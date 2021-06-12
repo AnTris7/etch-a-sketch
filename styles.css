@@ -8,21 +8,70 @@ body {
   background-color: #f54748;
 }
 
-.container-1 {
-  display: flex;
-  justify-content: center;
-  margin-top: 10%;
+.heading {
+  width: 50%;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.buttonz {
+  width: 30%;
+  text-align: center;
+  margin: auto;
+}
+
+.grid-resizer {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.slider::after {
+  content: "100";
+  color: white;
+  font-size: 1rem;
+  position: absolute;
+  left: 58.5%;
+  top: 15%;
+}
+
+.slider::before {
+  content: "2";
+  color: white;
+  font-size: 1rem;
+  position: absolute;
+  left: 40%;
+  top: 15%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 20%;
+  height: 15px;
+  outline: none;
+  background-color: black;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slide:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 #grid-container {
   height: 70vh;
   width: 70vh;
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
   border: 5px solid #f4eee8;
-  border-radius: 1%;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .inner-box {
@@ -30,6 +79,6 @@ body {
   border: 1px solid #000000;
 }
 
-.black {
-  background-color: black;
+.white {
+  background-color: white;
 }

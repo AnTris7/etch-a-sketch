@@ -1,34 +1,94 @@
 const containerGrid = document.getElementById("grid-container");
-// const makeGrid = function () {
-let gridCount = 256;
-for (let i = 0; i < gridCount; i++) {
-  const createDiv = document.createElement("div");
-  containerGrid.appendChild(createDiv).className = "inner-box";
+
+window.addEventListener("load", defaultGrid);
+
+function defaultGrid() {
+  buildGrid(16);
 }
 
-const innerDivs = document.querySelectorAll("div");
-innerDivs.forEach((innerDivs) =>
-  innerDivs.addEventListener("mouseover", color)
-);
+// creates grid
 
-function color() {
-  this.style.backgroundColor = "black";
+function buildGrid(size) {
+  let gridCount = size * size;
+  for (let i = 0; i < gridCount; i++) {
+    const createDiv = document.createElement("div");
+    containerGrid.style.gridTemplateColumns = `repeat(${size},1fr)`;
+    containerGrid.style.gridTemplateRow = `repeat(${size},1fr)`;
+    containerGrid.appendChild(createDiv).className = "inner-box";
+  }
+  // Coloring in grids
+
+  let innerDivs = document.querySelectorAll(".inner-box"); //"div"
+
+  innerDivs.forEach((innerDivs) =>
+    innerDivs.addEventListener("mouseover", function () {
+      this.style.backgroundColor = "black";
+    })
+  );
+
+  const colorGridBlack = function () {
+    innerDivs.forEach((innerDivs) =>
+      innerDivs.addEventListener("mouseover", function () {
+        this.style.backgroundColor = "black";
+      })
+    );
+  };
+
+  const colorGridRainbow = function () {
+    innerDivs.forEach((innerDivs) =>
+      innerDivs.addEventListener("mouseover", function () {
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        this.style.backgroundColor = "#" + randomColor;
+      })
+    );
+  };
+
+  //  to erase filled grids
+  const eraseGridColor = function () {
+    innerDivs.forEach((innerDivs) =>
+      innerDivs.addEventListener("mouseover", function () {
+        this.style.backgroundColor = "white";
+      })
+    );
+  };
+
+  //buttons to set the color & erase
+
+  const blackButton = document.querySelector(".black-btn");
+  blackButton.addEventListener("click", colorGridBlack);
+
+  const rainbowButton = document.querySelector(".rainbow-btn");
+  rainbowButton.addEventListener("click", colorGridRainbow);
+
+  const eraseButton = document.querySelector(".eraser-btn");
+  eraseButton.addEventListener("click", eraseGridColor);
+
+  // button to clear grid
+
+  const clearButton = document.querySelector(".clear-btn");
+  clearButton.addEventListener("click", function () {
+    innerDivs.forEach(
+      (innerDivs) => (innerDivs.style.backgroundColor = "#ffffff")
+    );
+  });
 }
 
-// function colorBlack() {
-//   const grid = document.getElementsByClassName("inner-box");
+//slider function to resize grid
 
-//   const len = grid.length;
+function resizeGrid() {
+  let size = slider.value;
+  let innerDivs = document.querySelectorAll(".inner-box");
+  innerDivs.forEach((innerDivs) => innerDivs.remove());
+  buildGrid(size);
+}
 
-//   for (i = 0; i < len; i++) {
-//     grid[i].addEventListener("mouseover", function () {
-//       grid[i].style.backgroundColor = "#0000";
-//     });
-//   }
-// }
+const slider = document.getElementById("resizeGrid");
+const output = document.getElementById("value");
 
-// makeGrid();
+output.innerHTML = slider.nodeValue;
 
-// colorBlack();
+slider.oninput = function () {
+  output.innerHTML = this.value;
+};
 
-//const blackColor = document.querySelectorAll("inner-box");
+slider.addEventListener("mousemove", resizeGrid);
