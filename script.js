@@ -91,4 +91,4 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 };
 
-slider.addEventListener("mousemove", resizeGrid);
+slider.addEventListener("mouseup", resizeGrid);
